@@ -12,7 +12,7 @@
 <body>
 
     <!-- Top bar -->
-    <section id="topbar">
+    <section id="topbar" style="display: block;">
         <div>
             <p>LIVE RACE STREAM FROM GATOR NATIONALS IN SARASOTA, FL / <a href="">WATCH NOW</a><label for="close-button" class="close-button"><img src="assets/x-mark.png" alt="Close"></label></p>
         </div>
@@ -31,11 +31,11 @@
     <section>
         <header class="header">
             <nav class="nav-left">
-                <a href="#">OUR TRACKS</a>
-                <a href="#">FIND EVENTS</a>
-                <a href="#">TRACK MAP</a>
-                <a href="#">SHOP</a>
-                <a href="#">ABOUT US</a>
+                <div><a href="#">OUR TRACKS</a></div>
+                <div><a href="#">FIND EVENTS</a></div>
+                <div><a href="#">TRACK MAP</a></div>
+                <div><a href="#">SHOP</a></div>
+                <div><a href="#">ABOUT US</a></div>
             </nav>
             <div class="search-box">
                 <input type="text" placeholder="Search">
@@ -67,7 +67,7 @@
                     </div>
                     <div class="right-column">
                         <div class="image-container">
-                            <img src="assets/video-thumbnail-img.png" alt="Hero image">
+                            <img src="assets/video-thumbnail-img.png" class="hero-img" alt="Hero image">
                             <div class="play-button" id="openModalButton">
                                 <img src="assets/play-icon.png" alt="Play button">
                             </div>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="right-column">
                         <div class="image-container">
-                            <img src="assets/video-thumbnail-img.png" alt="Hero image">
+                            <img src="assets/video-thumbnail-img.png" class="hero-img" alt="Hero image">
                             <div class="play-button" id="openModalButton">
                                 <img src="assets/play-icon.png" alt="Play button">
                             </div>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="right-column">
                         <div class="image-container">
-                            <img src="assets/video-thumbnail-img.png" alt="Hero image">
+                            <img src="assets/video-thumbnail-img.png" class="hero-img" alt="Hero image">
                             <div class="play-button" id="openModalButton">
                                 <img src="assets/play-icon.png" alt="Play button">
                             </div>
@@ -195,9 +195,7 @@
                 <div class="image-col image-col2">
                   <img src="assets/zig-zag-img-2.png" alt="Image">
                 </div>
-              </div>
-              
-              
+              </div>   
             
         </div>
         <div class="body-col2">
@@ -325,7 +323,14 @@
             arrows: true,
             dots: true,
             prevArrow: '<button class="slick-prev slick-arrow products-slider-left-btn" aria-label="Previous" type="button"></button>',
-            nextArrow: '<button class="slick-next slick-arrow products-slider-right-btn" aria-label="Next" ></button>'
+            nextArrow: '<button class="slick-next slick-arrow products-slider-right-btn" aria-label="Next" ></button>',
+            responsive: [
+            {
+                breakpoint: 991, // Adjust the breakpoint as needed
+                settings: {
+                    slidesToShow: 3, // Number of slides to show on screens less than 1200px
+                }
+            }]
         });
 
     </script>
@@ -352,7 +357,19 @@
             }
         });
 
+        document.addEventListener('DOMContentLoaded', function () {
+            var closeButton = document.querySelector('.close-button');
+            var topbar = document.getElementById('topbar');
+
+            closeButton.addEventListener('click', function () {
+                topbar.style.display = 'none'; // Hide the topbar section
+            });
+        });
+
+
+
     </script>
+    
     <script src="https://kit.fontawesome.com/4138468106.js" crossorigin="anonymous"></script>
 
 </body>

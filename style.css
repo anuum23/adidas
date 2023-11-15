@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto&family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&family=Montserrat:wght@400;700&display=swap');
 
 :root {
     --main-color: #268144; 
@@ -65,7 +65,6 @@ p{
     color: var(--main-color);
 }
 
-/* Styles for the close button */
 .close-button {
     border-radius: 50%;
     background-color: var(--main-color);
@@ -74,6 +73,7 @@ p{
     top: 8px;
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 
 .close-button img{
@@ -131,6 +131,35 @@ p{
     transform: skewX(-18deg);
     z-index: -1;
 }
+
+.header-button:hover {
+    position: relative;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, transparent 49%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+    font-family: "Oswald";
+    font-size: 18px;
+    width: 160px;
+    z-index: 1;
+}
+
+.header-button:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transform: skewX(-18deg);
+    z-index: -1;
+}
+
 .header-button.transparent-background {
     position: relative;
     padding: 10px 20px;
@@ -159,57 +188,101 @@ p{
     z-index: -1;
 }
 
-/* NAVBAR */
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-    padding: 15px 12%;
-    background-color: var(--tertiary-color);
-    background-image: url('assets/pattern-bg.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+.header-button.transparent-background:hover {
+    position: relative;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, transparent 49%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
     color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
     font-family: "Oswald";
     font-size: 18px;
-    line-height: 1;
+    width: 160px;
+    z-index: 1;
 }
 
-.nav-left {
-    display: flex;
-    gap: 60px;
-}
-
-.nav-left a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 16px;
-    position: relative;
-    transition: background-color 0.3s;
-}
-
-.nav-left a::before {
+.header-button.transparent-background:hover::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: var(--main-color); 
+    transform: skewX(-20deg);
+    z-index: -1;
+}
+
+/* NAVBAR */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    position: relative; 
+    padding: 0 12%;
+    background-color: var(--tertiary-color);
+    color: #fff;
+    font-family: "Oswald";
+    font-size: 18px;
+    overflow: hidden; 
+    background-image: url('assets/pattern-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.nav-left {
+    display: flex;
+    align-self: center; 
+    gap: 25px;
+    z-index: 1; 
+}
+
+.nav-left div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 60px;
+}
+
+.nav-left a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+    padding-left: 20px;
+}
+
+.nav-left div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 85%;
+    height: 100%;
     background-color: var(--main-color);
     transform: skewX(-20deg);
     transform-origin: 0;
-    z-index: -1;
-    transition: transform 0.3s;
+    z-index: 1;
+    transition: transform 0.3s, opacity 0.3s;
     opacity: 0;
 }
 
-.nav-left a:hover::before {
-    transform: skewX(-20deg) scale(1.1);
+.nav-left div:hover::before {
+    transform: skewX(-20deg) scaleX(1.5);
     opacity: 1;
-    transition: transform 0.3s;
 }
 
 .search-box {
@@ -225,6 +298,8 @@ p{
     background-image: url('assets/pattern-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
+    color: #fff;
+    margin: 0;
 }
 
 .search-box input[type="text"]::placeholder {
@@ -243,6 +318,7 @@ p{
     padding: 7px;
     cursor: pointer;
 }
+
 
 /* TITLE BAR */
 .container {
@@ -334,10 +410,14 @@ p{
     position: relative;
 }
 
+.image-container .hero-img{
+    position: relative;
+}
+
 .play-button {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 35%;
     transform: translate(-50%, -50%);
     width: 90px;
     height: 90px;
@@ -347,7 +427,6 @@ p{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: -80px;
     cursor: pointer;
 }
 
@@ -363,7 +442,7 @@ p{
     background-repeat: no-repeat;
     width: 30px;
     height: 30px;
-    left: 50px; /* Adjust the left position as needed */
+    left: 50px; 
     top: 50%;
     transform: translateY(-50%);
     border: none;
@@ -380,7 +459,7 @@ p{
     background-repeat: no-repeat;
     width: 30px !important;
     height: 30px !important;
-    right: 50px !important; /* Adjust the right position as needed */
+    right: 50px !important; 
     top: 50%;
     transform: translateY(-50%);
     border: none;
@@ -526,6 +605,7 @@ p{
     text-align: center;
     padding: 10px;
     margin: 10px;
+    max-width: 50px;
 }
 
 .event-details {
@@ -615,7 +695,7 @@ hr{
   }
   
   .card img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
   }
   
@@ -637,7 +717,6 @@ hr{
 }
 
 .image-col {
-    flex: 70%;
     overflow: hidden;
     position: relative;
 }
@@ -659,7 +738,6 @@ hr{
 }
 
 .image-col.image-col2 {
-    flex: 70%;
     overflow: hidden;
     position: relative;
 }
@@ -695,6 +773,16 @@ hr{
   .zigzag-2{
     background-color: var(--tertiary-color);
   }
+    .zigzag-1, .zigzag-2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .zigzag-1 h3, .zigzag-2 h3{
+        margin-bottom: 0;
+    }
 
   /* FORM */
   .form-section{
@@ -713,7 +801,7 @@ hr{
     .form-container {
         display: flex;
         flex-direction: column;
-        width: 40%;
+        padding: 0 30%;
         margin: 0 auto;
     }
 
@@ -781,6 +869,7 @@ hr{
         border-radius: 50%;
         outline: none;
         transition: background-color 0.3s;
+        background-color: #fff;
     }
     
     input[type="radio"]:checked {
@@ -820,8 +909,99 @@ hr{
         font-weight: 400;
     }
     
+  /* 
+   =========================
+    TABLET VIEW CSS
+  */  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .close-button {
+        right: -30px;
+        top: 8px;
+    }
+
+    #header-top{
+        padding: 10px 15px;
+    }
+
+    .header{
+        padding: 0 15px;
+    }
+
+    .left-section{
+        padding: 0 0 0 5px;
+    }
+
+    .slide-content {
+        padding: 100px 15px 100px 15px; 
+        width: 100%;
+    }
     
+    .slide-content .left-column h1{
+        line-height: 3.5rem;
+        font-weight: 400;
+        font-size: 50px;
+    }
     
+    .slide-content .left-column p{
+        font-size: 24px;
+        color: #fff;
+        font-weight: 300;
+        padding-right: 10px;
+    }
+    
+    .slide-content .right-column{
+        padding-left: 30px;
+    }
+    
+    .play-button {
+        left: 35%;
+    }
+
+    .slick-prev, .slick-next {
+        display: none !important;
+    }
+
+    .body-section{
+        padding: 40px 0 40px 0;
+    }
+
+    .products-slider-content img{
+        width: -webkit-fill-available;
+        margin-right: 20px;
+    }
+
+    .events{
+        padding: 0;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .card img{
+        height: 170px;
+    }
+
+    .text-col{
+        flex: 50%;
+    }
+
+    .image-col1::before{
+        right: -350px;
+    }
+
+    .image-col.image-col2::before{
+        left: -300px;
+    }
+
+    .form-container{
+        padding: 0 20%;
+    }
+}
+
+  
     
     
 
