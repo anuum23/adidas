@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -26,6 +27,20 @@
             <button class="header-button" style="margin-right: 8px">MEMBERSHIP</button>
             <button class="header-button transparent-background">ACCOUNT</button>
         </div>
+        <div class="hamburger" style="display: none;">
+            <img src="assets/burger-icon.png">
+        </div>
+    </section>
+
+    <section id="mobile-buttons" style="display: none;">
+        <div class="mobile-buttons">
+            <div class="button-container">
+                <button class="mob-header-button1" style="border-right: 1px solid #fff">MEMBERSHIP</button>
+            </div>
+            <div class="button-container">
+                <button class="mob-header-button2">ACCOUNT</button>
+            </div>
+        </div>
     </section>
 
     <section>
@@ -45,7 +60,21 @@
         
     </section>
 
-    <section>
+    <section class="mobile-menu">
+        <div class="search-box">
+            <input type="text" placeholder="Search">
+            <button class="search-button"><img src="assets/search-icon.png"> </button>
+        </div>
+        <nav class="mobile-nav">
+            <div><a href="#">OUR TRACKS</a></div>
+            <div><a href="#">FIND EVENTS</a></div>
+            <div><a href="#">TRACK MAP</a></div>
+            <div><a href="#">SHOP</a></div>
+            <div><a href="#">ABOUT US</a></div>
+        </nav>
+    </section>
+
+    <section id="title-section">
         <div class="container">
             <div class="left-section">
                 <h1>HOME PAGE</h1>
@@ -115,7 +144,7 @@
                     </div>
                     <div class="right-column">
                         <div class="image-container">
-                            <img src="assets/video-thumbnail-img.png" alt="Hero image">
+                            <img src="assets/video-thumbnail-img.png" class="hero-img" alt="Hero image">
                             <div class="play-button" id="openModalButton">
                                 <img src="assets/play-icon.png" alt="Play button">
                             </div>
@@ -187,7 +216,7 @@
                 </div>
               </div>
 
-              <div class="image-section">
+              <div class="image-section image-section2">
                 <div class="text-col zigzag-2">
                     <h3>2019 NATIONAL CHAMPIONS CROWNED AT REEBOK</h3>
                     <p>Membership has its perks. Joining ADIDAS means you can race at your local tracks</p>
@@ -244,21 +273,23 @@
             <div class="form-container">
                 <div class="form-row">
                     <label for="name">Name</label>
-                    <label for="email">Email</label>
+                    <label for="email" class="second-label1">Email</label>
                 </div>
                 <div class="form-row">
                     <input type="text" id="name" name="name" placeholder="enter name">
+                    <label for="email" class="second-label2">Email</label>
                     <input type="email" id="email" name="email" placeholder="enter email">
                 </div>
                 <div class="form-row">
                     <label for="country">Country</label>
-                    <label for="state">State</label>
+                    <label for="state" class="second-label1">State</label>
                 </div>
                 <div class="form-row">
                     <select id="country" name="country">
                         <option selected>USA</option>
                         <option>UK</option>
                     </select>
+                    <label for="state" class="second-label2">State</label>
                     <select id="state" name="state">
                         <option selected>USA</option>>
                     </select>
@@ -289,7 +320,7 @@
         <div>
             <a href="#"><h3>OUR TRACKS</h3></a> <span>/</span> <a href="#"><h3>FIND EVENTS</h3></a> <span>/</span> <a href="#"><h3>TRACK MAP</h3></a> <span>/</span> <a href="#"><h3>SHOP</h3></a> <span>/</span> <a href="#"><h3>ABOUT US</h3></a>  
         </div>
-        <div>
+        <div class="social-icons">
             <i class="fa-brands fa-facebook-f" ></i><i class="fa-brands fa-twitter" ></i><i class="fa-brands fa-instagram" ></i><i class="fa-brands fa-linkedin-in" ></i>
         </div>
         <div class="copyright">
@@ -326,11 +357,18 @@
             nextArrow: '<button class="slick-next slick-arrow products-slider-right-btn" aria-label="Next" ></button>',
             responsive: [
             {
-                breakpoint: 991, // Adjust the breakpoint as needed
+                breakpoint: 991, // for tablet
                 settings: {
-                    slidesToShow: 3, // Number of slides to show on screens less than 1200px
+                    slidesToShow: 3, // Number of slides to show on tablet
                 }
-            }]
+            },
+            {
+                breakpoint: 767, // for mobile
+                settings: {
+                    slidesToShow: 1, // Number of slides to show on mobile
+                }
+            }
+            ]
         });
 
     </script>
@@ -357,15 +395,31 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var closeButton = document.querySelector('.close-button');
-            var topbar = document.getElementById('topbar');
+        var body = $('body');
+        var mobileMenu = $('.mobile-menu');
+        var closeButton = $('.close-button');
+        var topbar = $('#topbar');
+        var hamburgerIcon = $('.hamburger'); // Add this line
 
-            closeButton.addEventListener('click', function () {
-                topbar.style.display = 'none'; // Hide the topbar section
-            });
+        // Attach click event to hamburger button after DOM is fully loaded
+        $(document).on('click', '.hamburger', function () {
+            mobileMenu.toggleClass('show');
+            
+            // Replace with explicit addClass/removeClass
+            if (mobileMenu.hasClass('show')) {
+                body.css('overflow', 'hidden');
+            } else {
+                body.css('overflow', 'auto');
+            }
         });
 
+        // Attach click event to close button
+        closeButton.on('click', function () {
+            topbar.hide(); // Hide the topbar section
+            mobileMenu.removeClass('show');
+            body.css('overflow', 'auto');
+            mobileMenu.css('top', topbar.is(':visible') ? '155px' : '95px');
+        });
 
 
     </script>
